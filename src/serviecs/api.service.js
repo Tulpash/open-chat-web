@@ -7,8 +7,8 @@ const chatStart = async () => {
     const conn = new HubConnectionBuilder().withUrl(`${API_PREFIX}/hubs/chat?token=${user.token}`, {
         accessTokenFactory: () => user.token
     }).withAutomaticReconnect().build()
+    conn.start().catch((e) => console.log(`Connection failed: ${e}`))
     chat.connection = conn
-    conn.start().catch((e) => console.log(`Connection failde: ${e}`))
 }
 
 const chatAPI = { start: chatStart }
