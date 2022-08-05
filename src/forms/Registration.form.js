@@ -1,0 +1,80 @@
+import { useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import * as yup from 'yup'
+import { Formik } from 'formik'
+import toast from 'react-hot-toast'
+import { MdAlternateEmail, MdLock, MdPerson } from 'react-icons/md'
+
+import api from '../serviecs/api.service'
+import FB from './FormBuilder'
+
+const RegistrationForm = () => {
+    const validationSchema = yup.object().shape({
+        email: yup.string().email('Введен некорректный Email').required('Поле \'Email\' обязательно для заполнения'),
+        password: yup.string().required('Поле \'Пароль\' обязательно для заполнения'),
+        firstName: yup.string().required('Поле \'Имя\' обязательно для заполнения'),
+        lastName: yup.string().required('Поле \'Фамилия\' обязательно для заполнения')
+    })
+
+    const initialValues = {
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: ''
+    }
+
+    const createUser = useCallback(async (email, password, firstName, lastName) => {
+        api.users.create(email, password, firstName, lastName).catch(console.log)
+    }, [])
+
+    const onSubmit = useCallback((vals) => {
+        toast.promise(createUser(vals.email, vals.password, vals.firstName, vals.lastName), {
+            loading: 'Регистрация',
+            success: 'Регистрация успешна',
+            error: 'Ошибка регистрации'
+        })
+    }, [createUser])
+    
+    return(
+        <>
+            <Formik initialValues={initialValues} validateOnBlur validationSchema={validationSchema} onSubmit={onSubmit}>
+                {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit}) => (
+                    <FB.Form>
+                        <FB.Header>Регистрация</FB.Header>
+                        <FB.InputGroup>
+                            <FB.Row>
+                                <MdPerson className={`text-2xl w-[40px] ${(touched.firstName && errors.firstName) ? 'text-red-600' : 'text-gray-400'}`} />
+                                <FB.Input error={touched.firstName && errors.firstName} type={'text'} name={'firstName'} placeholder={'Имя'} onChange={handleChange} onBlur={handleBlur} value={values.firstName} />
+                            </FB.Row>
+                            <FB.Row>
+                                <MdPerson className={`text-2xl w-[40px] ${(touched.lastName && errors.lastName) ? 'text-red-600' : 'text-gray-400'}`} />
+                                <FB.Input error={touched.lastName && errors.lastName} type={'text'} name={'lastName'} placeholder={'Фамилия'} onChange={handleChange} onBlur={handleBlur} value={values.lastName} />
+                            </FB.Row>
+                            <FB.Row>
+                                <MdAlternateEmail className={`text-2xl w-[40px] ${(touched.email && errors.email) ? 'text-red-600' : 'text-gray-400'}`} />
+                                <FB.Input error={touched.email && errors.email} type={'text'} name={'email'} placeholder={'Email'} onChange={handleChange} onBlur={handleBlur} value={values.email} />
+                            </FB.Row>
+                            <FB.Row>
+                                <MdLock className={`text-2xl w-[40px] ${(touched.password && errors.password) ? 'text-red-600' : 'text-gray-400'}`} />
+                                <FB.Input error={touched.password && errors.password} type={'password'} name={'password'} placeholder={'Пароль'} onChange={handleChange} onBlur={handleBlur} value={values.password} />
+                            </FB.Row>
+                        </FB.InputGroup>
+                        {
+                            ((touched.firstName && errors.firstName) || (touched.lastName && errors.lastName) || (touched.email && errors.email) || (touched.password && errors.password)) &&
+                            <FB.Errors>
+                                {touched.firstName && errors.firstName && <FB.Error>{errors.firstName}</FB.Error>}
+                                {touched.lastName && errors.lastName && <FB.Error>{errors.lastName}</FB.Error>}
+                                {touched.email && errors.email && <FB.Error>{errors.email}</FB.Error>}
+                                {touched.password && errors.password && <FB.Error>{errors.password}</FB.Error>}
+                            </FB.Errors>
+                        }
+                        <FB.Button type={'submit'} onClick={() => handleSubmit()} disabled={!isValid}>Зарегистрироваться</FB.Button>
+                    </FB.Form>
+                )}
+            </Formik>
+        </>
+    )
+}
+
+export default RegistrationForm

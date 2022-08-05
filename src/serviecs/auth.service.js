@@ -1,7 +1,7 @@
 import { API_PREFIX } from '../configuration/config'
 import user from '../stores/User.store'
 
-export const header = (headers) => {
+export const headers = (headers) => {
     if (!headers) {
         headers = {}
     }
@@ -11,17 +11,23 @@ export const header = (headers) => {
 }
 
 export const signin = async (login, password) => {
-    const data = {
-        Email: login,
-        Password: password
+    try {
+        const data = {
+            Email: login,
+            Password: password
+        }
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        const url = `${API_PREFIX}/users/signin`
+        const response = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(data) })
+        const body = await response.json()
+        user.set(body)
+        return true
     }
-    const headers = {
-        'Content-Type': 'application/json'
+    catch (err) {
+        return false
     }
-    const url = `${API_PREFIX}/users/signin`
-    const response = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(data) })
-    const body = await response.json()
-    user.set(body)
 }
 
 export const logout = () => {
@@ -36,7 +42,7 @@ const auth = {
     signin: signin,
     logout: logout,
     isAuthenticated: isAuthenticated,
-    header: header
+    headers: headers
 }
 
 export default auth
