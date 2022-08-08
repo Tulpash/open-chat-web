@@ -43,21 +43,21 @@ const RegistrationForm = () => {
                     <FB.Form>
                         <FB.Header>Регистрация</FB.Header>
                         <FB.InputGroup>
-                            <FB.Row>
-                                <MdPerson className={`text-2xl w-[40px] ${(touched.firstName && errors.firstName) ? 'text-red-600' : 'text-gray-400'}`} />
-                                <FB.Input error={touched.firstName && errors.firstName} type={'text'} name={'firstName'} placeholder={'Имя'} onChange={handleChange} onBlur={handleBlur} value={values.firstName} />
+                            <FB.Row error={touched.firstName && errors.firstName}>
+                                <MdPerson />
+                                <FB.Input type={'text'} name={'firstName'} placeholder={'Имя'} onChange={handleChange} onBlur={handleBlur} value={values.firstName} />
                             </FB.Row>
-                            <FB.Row>
-                                <MdPerson className={`text-2xl w-[40px] ${(touched.lastName && errors.lastName) ? 'text-red-600' : 'text-gray-400'}`} />
-                                <FB.Input error={touched.lastName && errors.lastName} type={'text'} name={'lastName'} placeholder={'Фамилия'} onChange={handleChange} onBlur={handleBlur} value={values.lastName} />
+                            <FB.Row error={touched.lastName && errors.lastName}>
+                                <MdPerson />
+                                <FB.Input type={'text'} name={'lastName'} placeholder={'Фамилия'} onChange={handleChange} onBlur={handleBlur} value={values.lastName} />
                             </FB.Row>
-                            <FB.Row>
-                                <MdAlternateEmail className={`text-2xl w-[40px] ${(touched.email && errors.email) ? 'text-red-600' : 'text-gray-400'}`} />
-                                <FB.Input error={touched.email && errors.email} type={'text'} name={'email'} placeholder={'Email'} onChange={handleChange} onBlur={handleBlur} value={values.email} />
+                            <FB.Row error={touched.email && errors.email}>
+                                <MdAlternateEmail />
+                                <FB.Input type={'text'} name={'email'} placeholder={'Email'} onChange={handleChange} onBlur={handleBlur} value={values.email} />
                             </FB.Row>
-                            <FB.Row>
-                                <MdLock className={`text-2xl w-[40px] ${(touched.password && errors.password) ? 'text-red-600' : 'text-gray-400'}`} />
-                                <FB.Input error={touched.password && errors.password} type={'password'} name={'password'} placeholder={'Пароль'} onChange={handleChange} onBlur={handleBlur} value={values.password} />
+                            <FB.Row error={touched.password && errors.password}>
+                                <MdLock />
+                                <FB.Input type={'password'} name={'password'} placeholder={'Пароль'} onChange={handleChange} onBlur={handleBlur} value={values.password} />
                             </FB.Row>
                         </FB.InputGroup>
                         {

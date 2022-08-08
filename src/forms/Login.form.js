@@ -45,13 +45,13 @@ const LoginForm = () => {
                     <FB.Form>
                         <FB.Header>Вход</FB.Header>
                         <FB.InputGroup>
-                            <FB.Row>
-                                <MdAlternateEmail className={`text-2xl w-[40px] ${(touched.login && errors.login) ? 'text-red-600' : 'text-gray-400'}`} />
-                                <FB.Input error={touched.login && errors.login} type={'email'} name={'login'} placeholder={'Email'} onBlur={handleBlur} onChange={handleChange} value={values.login} />
+                            <FB.Row error={touched.login && errors.login}>
+                                <MdAlternateEmail />
+                                <FB.Input type={'email'} name={'login'} placeholder={'Email'} onBlur={handleBlur} onChange={handleChange} value={values.login} />
                             </FB.Row>
-                            <FB.Row>
-                                <MdLock className={`text-2xl w-[40px] ${(touched.password && errors.password) ? 'text-red-600' : 'text-gray-400'}`} />
-                                <FB.Input error={touched.password && errors.password} type={'password'} name={'password'} placeholder={'Пароль'} onBlur={handleBlur} onChange={handleChange} value={values.password} />
+                            <FB.Row error={touched.password && errors.password}>
+                                <MdLock />
+                                <FB.Input type={'password'} name={'password'} placeholder={'Пароль'} onBlur={handleBlur} onChange={handleChange} value={values.password} />
                             </FB.Row>
                         </FB.InputGroup>
                         {

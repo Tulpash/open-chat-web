@@ -28,7 +28,7 @@ export const FormInputGroup = (props) => {
 
 export const FormRow = (props) => {
     return(
-        <div className={'flex items-center justify-center first:rounded-t-md last:rounded-b-md border-gray-300 bg-transparent hover:bg-gray-100 hover:border-gray-500 duration-200'}>
+        <div className={`flex items-center justify-center first:rounded-t-md last:rounded-b-md bg-transparent hover:bg-gray-100 ${!props.error && '[&:hover>*]:text-black [&:hover>*]:placeholder-black'} ${props.error && '[&>input]:placeholder-red-600 text-red-600'} ${props.error ? '[&>svg]:text-red-600' : '[&>svg]:text-gray-400'} duration-200 [&>svg]:text-2xl [&>svg]:w-[40px]`}>
             {props.children}
         </div>
     )
@@ -36,13 +36,13 @@ export const FormRow = (props) => {
 
 export const FormInput = (props) => {
     return(
-        <input className={`p-2 bg-transparent w-full ${props.error && 'placeholder-red-600 text-red-600'}`} {...props} />
+        <input className={`p-2 bg-transparent w-full`} {...props} />
     )
 }
 
 export const FormButton = (props) => {
     return(
-        <button className={'p-2 rounded-md border-2 border-gray-500 bg-gray-500 text-white hover:bg-white hover:text-gray-500 duration-200'} {...props} >{props.children}</button>
+        <button className={'p-2 rounded-md border-2 border-black bg-black text-white hover:bg-transparent hover:text-black duration-200 cursor-pointer'} {...props} >{props.children}</button>
     )
 }
 
