@@ -6,29 +6,26 @@ export const headers = (headers) => {
         headers = {}
     }
 
-    headers.Authorization = `Bearer ${user.token}`
+    headers['Authorization'] = `Bearer ${user.token}`
     return headers
 }
 
 export const signin = async (login, password) => {
-    try {
-        const data = {
-            Email: login,
-            Password: password
-        }
-        const headers = {
-            'Content-Type': 'application/json'
-        }
-        const url = `${API_PREFIX}/auth/signin`
-        const response = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(data) })
-        const body = await response.json()
-        console.log(body)
-        user.set(body)
-        return true
+    const data = {
+        Email: login,
+        Password: password
     }
-    catch (err) {
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    const url = `${API_PREFIX}/auth/signin`
+    const response = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(data) })
+    const res = await response.handle(response.json, false) 
+    if (!res) {
         return false
     }
+    user.set(res)
+    return true
 }
 
 export const logout = () => {

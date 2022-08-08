@@ -1,3 +1,5 @@
+import toast from 'react-hot-toast'
+
 import api from '../serviecs/api.service'
 import user from '../stores/User.store'
 
@@ -5,21 +7,28 @@ import user from '../stores/User.store'
 Response.prototype.handle = async function (read, errReturnObject) {
     if (!this.ok) {
         const err = await this.text()
-        console.log(`Error: ${err}`)
+        console.log(err)
+        toast.error(err)
         return errReturnObject
     }
 
     if (read !== null) {
         const body = await read.call(this)
-        console.log(`Config body: ${body}`)
         return body
     }
 
     return true
 }
 
+//safe state in localstorage when refresh browser
+window.onbeforeunload = () => {
+    const userTmp = user.get()
+    localStorage.setItem('user', JSON.stringify(userTmp))
+}
+
 window.onload = () => {
-    console.log(user.token())
+    const userTmp = JSON.parse(localStorage.getItem('user'))
+    user.set(userTmp)
     if (user.token() !== null) api.chat.start()
 }
 

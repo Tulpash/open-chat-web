@@ -24,9 +24,10 @@ const LoginForm = () => {
     const navigate = useNavigate()
 
     const signIn = useCallback(async (login, password) => {
-        auth.signin(login, password).then(() => { 
-            api.chat.start().then(() => navigate('/main')).catch(console.log)           
-        }).catch(console.log)
+        const res = await auth.signin(login, password)
+        if (!res) throw new Error()
+        await api.chat.start()
+        navigate('/main')
     }, [])
 
     const onSubmit = useCallback((vals) => {

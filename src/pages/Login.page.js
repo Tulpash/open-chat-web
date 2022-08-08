@@ -17,7 +17,7 @@ const LoginPage = () => {
             <div className={'w-1/2 min-w-[400px] flex items-center justify-center'}>
                 {
                     isLogin ?
-                    <div className={'w-1/2 flex flex-col gap-2'}>
+                    <div className={'md:w-1/2 sm:w-3/4 flex flex-col gap-2'}>
                         <LoginForm />
                         <div className={'w-full flex justify-evenly'}>
                             <button className={'flex gap-2 justify-center items-center border-0 bg-transparent text-gray-400 hover:text-black duration-200'}>

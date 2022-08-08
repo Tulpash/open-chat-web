@@ -13,13 +13,15 @@ const RegistrationForm = () => {
     const validationSchema = yup.object().shape({
         email: yup.string().email('Введен некорректный Email').required('Поле \'Email\' обязательно для заполнения'),
         password: yup.string().required('Поле \'Пароль\' обязательно для заполнения'),
-        firstName: yup.string().required('Поле \'Имя\' обязательно для заполнения'),
-        lastName: yup.string().required('Поле \'Фамилия\' обязательно для заполнения')
+        confirmPassword: yup.string().test('passwords-match', 'Пароли не совпадают', function (val) { return val === this.parent.password }).required('Поле \'Повторите пароль\' обязательно для заполнения'),
+        firstName: yup.string().trim().matches(/^[a-zA-Zа-яА-Я]+$/, 'В поле \'Имя\' разрешены [A-Za-zА-Яа-я]').required('Поле \'Имя\' обязательно для заполнения'),
+        lastName: yup.string().trim().matches(/^[a-zA-Zа-яА-Я]+$/, 'В поле \'Фамилия\' разрешены [A-Za-zА-Яа-я]').required('Поле \'Фамилия\' обязательно для заполнения')
     })
 
     const initialValues = {
         email: '',
         password: '',
+        confirmPassword: '',
         firstName: '',
         lastName: ''
     }
@@ -55,18 +57,23 @@ const RegistrationForm = () => {
                                 <MdAlternateEmail />
                                 <FB.Input type={'text'} name={'email'} placeholder={'Email'} onChange={handleChange} onBlur={handleBlur} value={values.email} />
                             </FB.Row>
-                            <FB.Row error={touched.password && errors.password}>
+                            <FB.Row error={(touched.password && errors.password) || (touched.confirmPassword && errors.confirmPassword)}>
                                 <MdLock />
                                 <FB.Input type={'password'} name={'password'} placeholder={'Пароль'} onChange={handleChange} onBlur={handleBlur} value={values.password} />
                             </FB.Row>
+                            <FB.Row error={touched.confirmPassword && errors.confirmPassword}>
+                                <MdLock />
+                                <FB.Input type={'password'} name={'confirmPassword'} placeholder={'Повторите пароль'} onChange={handleChange} onBlur={handleBlur} value={values.confirmPassword} />
+                            </FB.Row>
                         </FB.InputGroup>
                         {
-                            ((touched.firstName && errors.firstName) || (touched.lastName && errors.lastName) || (touched.email && errors.email) || (touched.password && errors.password)) &&
+                            ((touched.firstName && errors.firstName) || (touched.lastName && errors.lastName) || (touched.email && errors.email) || (touched.password && errors.password)  || (touched.confirmPassword && errors.confirmPassword)) &&
                             <FB.Errors>
                                 {touched.firstName && errors.firstName && <FB.Error>{errors.firstName}</FB.Error>}
                                 {touched.lastName && errors.lastName && <FB.Error>{errors.lastName}</FB.Error>}
                                 {touched.email && errors.email && <FB.Error>{errors.email}</FB.Error>}
                                 {touched.password && errors.password && <FB.Error>{errors.password}</FB.Error>}
+                                {touched.confirmPassword && errors.confirmPassword && <FB.Error>{errors.confirmPassword}</FB.Error>}
                             </FB.Errors>
                         }
                         <FB.Button type={'submit'} onClick={() => handleSubmit()} disabled={!isValid}>Зарегистрироваться</FB.Button>
