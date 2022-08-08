@@ -25,8 +25,7 @@ const LoginForm = () => {
 
     const signIn = useCallback(async (login, password) => {
         auth.signin(login, password).then(() => { 
-            api.chat.start() 
-            //navigate('/main')
+            api.chat.start().then(() => navigate('/main')).catch(console.log)           
         }).catch(console.log)
     }, [])
 

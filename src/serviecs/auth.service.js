@@ -19,9 +19,10 @@ export const signin = async (login, password) => {
         const headers = {
             'Content-Type': 'application/json'
         }
-        const url = `${API_PREFIX}/users/signin`
+        const url = `${API_PREFIX}/auth/signin`
         const response = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(data) })
         const body = await response.json()
+        console.log(body)
         user.set(body)
         return true
     }

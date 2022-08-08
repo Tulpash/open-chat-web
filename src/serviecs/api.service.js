@@ -44,12 +44,22 @@ const usersCreate = async (email, password, firstName, lastName) => {
         'Content-Type': 'application/json'
     }
     const response = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(data) })
-    console.log(response)
     return await response.handle(null, false) 
     //return await handleResponse(response, null, false)
 }
 
-const usersAPI = { create: usersCreate }
+const usersSearch = async (searchString) => {
+    const url = `${API_PREFIX}/users/search`
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    console.log(searchString)
+    const response = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(searchString) })
+    console.log(response)
+    return await response.handle(response.json, [])
+}
+
+const usersAPI = { create: usersCreate, search: usersSearch }
 
 //
 const API = { chat: chatAPI, users: usersAPI }

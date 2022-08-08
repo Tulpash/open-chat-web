@@ -1,7 +1,5 @@
 import { useState } from 'react'
 
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
-
 import LoginForm from '../forms/Login.form'
 import RegistrationForm from '../forms/Registration.form'
 
