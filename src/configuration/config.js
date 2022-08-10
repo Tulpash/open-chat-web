@@ -21,16 +21,27 @@ Response.prototype.handle = async function (read, errReturnObject) {
 }
 
 //safe state in localstorage when refresh browser
-window.onbeforeunload = () => {
+// window.onbeforeunload = () => {
+//     const userTmp = user.get()
+//     localStorage.setItem('user', JSON.stringify(userTmp))
+// }
+
+window.addEventListener('onbeforeunload', () => {
     const userTmp = user.get()
     localStorage.setItem('user', JSON.stringify(userTmp))
-}
+})
 
-window.onload = () => {
+// window.onload = () => {
+//     const userTmp = JSON.parse(localStorage.getItem('user'))
+//     user.set(userTmp)
+//     if (user.token() !== null) api.chat.start()
+// }
+
+window.addEventListener('onload', () => {
     const userTmp = JSON.parse(localStorage.getItem('user'))
     user.set(userTmp)
     if (user.token() !== null) api.chat.start()
-}
+})
 
 
 //Options
