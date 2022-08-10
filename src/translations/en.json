@@ -1,3 +1,35 @@
 {
-    "test": "Test"
+    "forms": {
+        "login": {
+            "title": "Sign in",
+            "login": "Email",
+            "password": "Password",
+            "submit": "Sign in"
+        },
+        "registration": {
+            "title": "Sign up",
+            "login": "Email",
+            "password": "Password",
+            "confirm_password": "Confirm password",
+            "first_name": "Name",
+            "last_name": "Last name",
+            "submit": "Sign up"
+        },
+        "errors": {
+            "email": "Incorrect 'Email'",
+            "email_req": "The field 'Email' is required",
+            "password_req": "The field 'Password' is required",
+            "confirm_password_req": "The field 'Confirm password' is required",
+            "match_password": "Passwords doesn't match",
+            "first_name": "The field 'Name' allow only [a-zA-Zа-яА-Я]",
+            "first_name_req": "The field 'Name' is required",
+            "last_name": "The field 'Last name' allow only [a-zA-Zа-яА-Я]",
+            "last_name_req": "The field 'Last name' is required"
+        },
+        "other": {
+            "forgot_password": "Forgot password",
+            "to_registartion": "Create new account",
+            "to_signin": "Sign in"
+        }
+    }
 }

@@ -1,9 +1,10 @@
 import { useState } from 'react'
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
 
 import LoginForm from '../forms/Login.form'
 import RegistrationForm from '../forms/Registration.form'
+import LanguageSelector from '../components/LanguageSelector'
 
 const LoginPage = () => {
     const [isLogin, setLogin] = useState(true)
@@ -11,6 +12,9 @@ const LoginPage = () => {
     
     return(
         <div className={'h-screen w-screen flex flex-col-reverse items-center justify-center gap-24 md:gap-0 md:flex-row'}>
+            <div className={'fixed top-[10px] right-[10px]'}>
+                <LanguageSelector />
+            </div>
             <div className={'w-full flex items-center justify-center md:w-1/2'}>
                 <div className={'p-2 bg-black text-white rounded-md w-3/4'}>
                     This is an example of a simple live chat. The chat consists of two parts: a server written in C# using SignalR and a web client based on React. More information can be found in the README files in the respective repositories.
@@ -28,15 +32,15 @@ const LoginPage = () => {
                             isLogin ?
                             <>
                                 <button className={'bg-transparent text-gray-400 hover:text-black duration-200'}>
-                                    {t('test')}
+                                    {t('forms.other.forgot_password')}
                                 </button>
                                 <button className={'bg-transparent text-gray-400 hover:text-black duration-200'} onClick={() => setLogin(!isLogin)}>
-                                    У меня не таккаунта
+                                    {t('forms.other.to_registartion')}
                                 </button>
                             </> :
                             <>
                                 <button className={'bg-transparent text-gray-400 hover:text-black duration-200'} onClick={() => setLogin(!isLogin)}>
-                                    У меня не таккаунта
+                                    {t('forms.other.to_signin')}
                                 </button>
                             </>
                         }

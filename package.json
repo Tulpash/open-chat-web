@@ -5,6 +5,7 @@
   "dependencies": {
     "@microsoft/signalr": "^6.0.7",
     "cookie": "^0.5.0",
+    "country-flag-icons": "^1.5.5",
     "cra-template": "1.2.0",
     "formik": "^2.2.9",
     "i18next": "^21.9.0",

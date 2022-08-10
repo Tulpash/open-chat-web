@@ -1,3 +1,35 @@
 {
-    "test": "Тест"
+    "forms": {
+        "login": {
+            "title": "Вход",
+            "login": "Логин",
+            "password": "Пароль",
+            "submit": "Войти"
+        },
+        "registration": {
+            "title": "Регистрация",
+            "login": "Email",
+            "password": "Пароль",
+            "confirm_password": "Повторите пароль",
+            "first_name": "Имя",
+            "last_name": "Фамилия",
+            "submit": "Зарегистрироваться"
+        },
+        "errors": {
+            "email": "Введен некорректный Email",
+            "email_req": "Поле 'Email' обязательно для заполнения",
+            "password_req": "Поле 'Пароль' обязательно для заполнения",
+            "confirm_password_req": "Поле 'Повторите пароль' обязательно для заполнения",
+            "match_password": "Пароли не совпадают",
+            "first_name": "В поле 'Имя' разрешены [a-zA-Zа-яА-Я]",
+            "first_name_req": "Поле 'Имя' обязательно для заполнения",
+            "last_name": "В поле 'Фамилия' разрешены [a-zA-Zа-яА-Я]",
+            "last_name_req": "Поле 'Фамилия' обязательно для заполнения"
+        },
+        "other": {
+            "forgot_password": "Забыли пароль",
+            "to_registartion": "У меня нет аккаунта",
+            "to_signin": "Вход"
+        }
+    }
 }
