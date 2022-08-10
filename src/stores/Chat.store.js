@@ -17,6 +17,19 @@ class ChatStore {
     get connection() {
         return this._connection
     }
+
+    get() {
+        const data = {
+            chats: this._chats,
+            currentChat: this._currentChat
+        }
+        return data
+    }
+
+    set(data) {
+        this.chats = data.chats
+        this.currentChat = data.currentChat
+    }
 }
 
 export default new ChatStore()

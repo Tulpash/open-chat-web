@@ -2,6 +2,7 @@ import toast from 'react-hot-toast'
 
 import api from '../serviecs/api.service'
 import user from '../stores/User.store'
+import chat from '../stores/Chat.store'
 
 //Custom function to handle response
 Response.prototype.handle = async function (read, errReturnObject) {
@@ -29,6 +30,8 @@ Response.prototype.handle = async function (read, errReturnObject) {
 window.addEventListener('onbeforeunload', () => {
     const userTmp = user.get()
     localStorage.setItem('user', JSON.stringify(userTmp))
+    const chatTmp = chat.get()
+    localStorage.setItem('chat', JSON.stringify(chatTmp))
 })
 
 // window.onload = () => {
@@ -40,6 +43,8 @@ window.addEventListener('onbeforeunload', () => {
 window.addEventListener('onload', () => {
     const userTmp = JSON.parse(localStorage.getItem('user'))
     user.set(userTmp)
+    const chatTmp = JSON.parse(localStorage.getItem('chat'))
+    chat.set(chatTmp)
     if (user.token() !== null) api.chat.start()
 })
 
