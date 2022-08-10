@@ -16,12 +16,33 @@ const LoginPage = () => {
                 <LanguageSelector />
             </div>
             <div className={'w-full flex items-center justify-center md:w-1/2'}>
-                <div className={'p-2 bg-black text-white rounded-md w-3/4'}>
-                    This is an example of a simple live chat. The chat consists of two parts: a server written in C# using SignalR and a web client based on React. More information can be found in the README files in the respective repositories.
+                <div className={'p-2 flex flex-col justify-between bg-black text-white rounded-md w-3/4 max-w-[450px] min-h-[400px]'}>
+                    <div className={'flex flex-col gap-4'}>
+                        <div className={'text-xl font-bold'}>
+                            {t('app.title')}
+                        </div>
+                        <div>
+                            {t('app.description')}
+                        </div>
+                        <div className={'flex flex-col w-full'}>
+                            <div className={'font-bold'}>
+                                {t('app.git.title')}
+                            </div>
+                            <div>
+                                {t('app.git.server')}: https://github.com/Tulpash/OpenChat-API.git
+                            </div>
+                            <div>
+                                {t('app.git.web_client')}: https://github.com/Tulpash/open-chat-web.git
+                            </div>
+                        </div>
+                    </div>
+                    <div className={'flex gap-2'}>
+                        <img src={'https://www.codewars.com/packs/assets/logo.61192cf7.svg'} alt={'code wars logo'} className={'w-[40px]'} />
+                    </div>
                 </div>
             </div>
             <div className={'w-full flex items-center justify-center md:w-1/2'}>
-                <div className={'w-3/4 flex flex-col gap-2'}>
+                <div className={'w-3/4 flex flex-col gap-2 max-w-[400px]'}>
                     {
                         isLogin ?
                         <LoginForm /> :
