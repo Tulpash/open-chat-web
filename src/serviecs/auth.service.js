@@ -6,7 +6,7 @@ export const headers = (headers) => {
         headers = {}
     }
 
-    headers['Authorization'] = `Bearer ${user.token}`
+    headers['Authorization'] = `Bearer ${user.token()}`
     return headers
 }
 
@@ -20,7 +20,7 @@ export const signin = async (login, password) => {
     }
     const url = `${API_PREFIX}/auth/signin`
     const response = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(data) })
-    const res = await response.handle(response.json, false) 
+    const res = await response.handle(response.json) 
     if (!res) {
         return false
     }

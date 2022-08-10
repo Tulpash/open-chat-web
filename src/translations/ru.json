@@ -4,7 +4,11 @@
             "title": "Вход",
             "login": "Логин",
             "password": "Пароль",
-            "submit": "Войти"
+            "submit": "Войти",
+            "toast": {
+                "loading": "Вход",
+                "success": "Вы вошли"
+            }
         },
         "registration": {
             "title": "Регистрация",
@@ -13,7 +17,11 @@
             "confirm_password": "Повторите пароль",
             "first_name": "Имя",
             "last_name": "Фамилия",
-            "submit": "Зарегистрироваться"
+            "submit": "Зарегистрироваться",
+            "toast": {
+                "loading": "Регистрация",
+                "success": "Успешно"
+            }
         },
         "errors": {
             "email": "Введен некорректный Email",

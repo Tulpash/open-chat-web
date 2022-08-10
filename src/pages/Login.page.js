@@ -9,14 +9,14 @@ import LanguageSelector from '../components/LanguageSelector'
 const LoginPage = () => {
     const [isLogin, setLogin] = useState(true)
     const { t } = useTranslation()
-    
+
     return(
-        <div className={'h-screen w-screen flex flex-col-reverse items-center justify-center gap-24 md:gap-0 md:flex-row'}>
+        <div className={`h-screen w-screen flex flex-col-reverse items-center justify-center gap-24 md:gap-0 md:flex-row bg-gray-100`}>
             <div className={'fixed top-[10px] right-[10px]'}>
                 <LanguageSelector />
             </div>
-            <div className={'w-full flex items-center justify-center md:w-1/2'}>
-                <div className={'p-2 flex flex-col justify-between bg-black text-white rounded-md w-3/4 max-w-[450px] min-h-[400px]'}>
+            <div className={'w-full items-center justify-center hidden md:flex md:w-1/2'}>
+                <div className={'p-2 flex flex-col justify-between bg-transparent text-gray-700 rounded-md w-3/4 max-w-[450px] min-h-[400px]'}>
                     <div className={'flex flex-col gap-4'}>
                         <div className={'text-xl font-bold'}>
                             {t('app.title')}

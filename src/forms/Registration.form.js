@@ -1,9 +1,7 @@
 import { useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import * as yup from 'yup'
 import { Formik } from 'formik'
-import toast from 'react-hot-toast'
 import { MdAlternateEmail, MdLock, MdPerson } from 'react-icons/md'
 import { useTranslation } from 'react-i18next'
 
@@ -30,15 +28,11 @@ const RegistrationForm = () => {
     }
 
     const createUser = useCallback(async (email, password, firstName, lastName) => {
-        api.users.create(email, password, firstName, lastName).catch(console.log)
+        await api.users.create(email, password, firstName, lastName)
     }, [])
 
     const onSubmit = useCallback((vals) => {
-        toast.promise(createUser(vals.email, vals.password, vals.firstName, vals.lastName), {
-            loading: 'Регистрация',
-            success: 'Регистрация успешна',
-            error: 'Ошибка регистрации'
-        })
+        api.toast.fetch(createUser(vals.email, vals.password, vals.firstName, vals.lastName), t('forms.registration.toast.loading'), t('forms.registration.toast.success'))
     }, [createUser])
     
     return(

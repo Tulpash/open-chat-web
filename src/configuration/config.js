@@ -1,16 +1,13 @@
-import toast from 'react-hot-toast'
-
 import api from '../serviecs/api.service'
 import user from '../stores/User.store'
 import chat from '../stores/Chat.store'
 
 //Custom function to handle response
-Response.prototype.handle = async function (read, errReturnObject) {
+Response.prototype.handle = async function (read) {
     if (!this.ok) {
         const err = await this.text()
         console.log(err)
-        toast.error(err)
-        return errReturnObject
+        throw new Error(err)
     }
 
     if (read !== null) {

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 
 import * as yup from 'yup'
 import { Formik } from 'formik'
-import toast from 'react-hot-toast'
 import { MdAlternateEmail, MdLock } from 'react-icons/md'
 import { useTranslation } from 'react-i18next'
 
@@ -27,18 +26,13 @@ const LoginForm = () => {
     const navigate = useNavigate()
 
     const signIn = useCallback(async (login, password) => {
-        const res = await auth.signin(login, password)
-        if (!res) throw new Error()
+        await auth.signin(login, password)
         await api.chat.start()
         navigate('/main')
     }, [])
 
     const onSubmit = useCallback((vals) => {
-        toast.promise(signIn(vals.login, vals.password), {
-            loading: 'Вход',
-            success: 'Успешно',
-            error: 'Ошибка'
-        })
+        api.toast.fetch(signIn(vals.login, vals.password), t('forms.login.toast.loading'), t('forms.login.toast.success'))
     }, [signIn])
     
     return(

@@ -30,6 +30,10 @@ class ChatStore {
         this.chats = data.chats
         this.currentChat = data.currentChat
     }
+
+    chatCount() {
+        return this.chats.length
+    }
 }
 
 export default new ChatStore()

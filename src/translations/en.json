@@ -4,7 +4,11 @@
             "title": "Sign in",
             "login": "Email",
             "password": "Password",
-            "submit": "Sign in"
+            "submit": "Sign in",
+            "toast": {
+                "loading": "Sign in",
+                "success": "Successfull"
+            }
         },
         "registration": {
             "title": "Sign up",
@@ -13,7 +17,11 @@
             "confirm_password": "Confirm password",
             "first_name": "Name",
             "last_name": "Last name",
-            "submit": "Sign up"
+            "submit": "Sign up",
+            "toast": {
+                "loading": "Sign up",
+                "success": "Successfull"
+            }
         },
         "errors": {
             "email": "Incorrect 'Email'",

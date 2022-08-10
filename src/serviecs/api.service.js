@@ -1,24 +1,9 @@
 import { HubConnectionBuilder } from '@microsoft/signalr'
+import toast from 'react-hot-toast'
+
 import { API_PREFIX } from '../configuration/config'
-import auth from '../serviecs/auth.service'
-import chat from '../stores/Chat.store'
 import user from '../stores/User.store'
-
-//
-const handleResponse = async (response, read, errReturnObject) => {
-    if (!response.ok) {
-        const err = await response.text()
-        console.log(`Error: ${err}`)
-        return errReturnObject
-    }
-
-    if (read !== null) {
-        const body = await read.call(response)
-        return body
-    }
-
-    return true
-}
+import auth from './auth.service'
 
 //
 const chatStart = async () => {
@@ -31,7 +16,7 @@ const chatStart = async () => {
 
 const chatAPI = { start: chatStart }
 
-//
+//registration
 const usersCreate = async (email, password, firstName, lastName) => {
     const url = `${API_PREFIX}/users/create`
     const data = {
@@ -44,24 +29,33 @@ const usersCreate = async (email, password, firstName, lastName) => {
         'Content-Type': 'application/json'
     }
     const response = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(data) })
-    return await response.handle(null, false) 
-    //return await handleResponse(response, null, false)
+    return await response.handle(null) 
 }
 
+//search users
 const usersSearch = async (searchString) => {
     const url = `${API_PREFIX}/users/search`
     const headers = {
         'Content-Type': 'application/json'
     }
-    console.log(searchString)
-    const response = await fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(searchString) })
-    console.log(response)
-    return await response.handle(response.json, [])
+    const response = await fetch(url, { method: 'POST', headers: auth.headers(headers), body: JSON.stringify(searchString) })
+    return await response.handle(response.json)
 }
 
 const usersAPI = { create: usersCreate, search: usersSearch }
 
+//Toast
+export const toastFetch = (promise, loading, success) => {
+    toast.promise(promise, {
+        loading: loading,
+        success: success,
+        error: (err) => `${err.message}`
+    })
+}
+
+const toastAPI = { fetch: toastFetch } 
+
 //
-const API = { chat: chatAPI, users: usersAPI }
+const API = { chat: chatAPI, users: usersAPI, toast: toastAPI }
 
 export default API
