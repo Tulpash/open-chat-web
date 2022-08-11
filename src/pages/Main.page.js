@@ -35,8 +35,8 @@ const MainPage = () => {
                     <div className={'w-full min-h-[50px]'}>
 
                     </div>
-                    <div className={'w-full h-full bg-gray-200'}>
-
+                    <div className={'relative w-full h-full bg-gray-200'}>
+                        
                     </div>
                     <div className={'w-full min-h-[50px]'}>
 
