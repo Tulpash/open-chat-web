@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx'
+import { MdFollowTheSigns } from 'react-icons/md'
 
 class UserStore {
 
@@ -7,6 +8,7 @@ class UserStore {
     _lastName = null
     _token = null
     _id = null
+    _unique = null
 
     constructor() {
         makeAutoObservable(this)
@@ -18,6 +20,7 @@ class UserStore {
         this._lastName = data.lastName
         this._token = data.token
         this._id = data.id
+        this._unique = data.unique
     }
 
     get() {
@@ -26,7 +29,8 @@ class UserStore {
             firstName: this._firstName,
             lastName: this._lastName,
             token: this._token,
-            id: this._id
+            id: this._id,
+            unique: tjis._unique
         }
         return data
     }
@@ -37,6 +41,7 @@ class UserStore {
         this._lastName = null
         this._token = null
         this._id = null
+        this._unique = null
     }
 
     login() {
@@ -49,6 +54,10 @@ class UserStore {
 
     token() {
         return this._token
+    }
+
+    unique() {
+        return this._unique
     }
 }
 
