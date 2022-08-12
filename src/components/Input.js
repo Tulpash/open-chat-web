@@ -1,6 +1,6 @@
 const Input = (props) => {
     return (
-        <input className={'w-full h-full p-2 rounded-md bg-gray-200'} {...props} />
+        <input className={'w-full h-full py-2 px-4 rounded-full bg-gray-100'} {...props} />
     )
 }
 

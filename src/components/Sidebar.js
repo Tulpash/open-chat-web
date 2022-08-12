@@ -19,7 +19,8 @@ const Sidebar = () => {
     })
     
     return(
-        <div className={'flex flex-col min-w-[400px] shadow-[5px_0px_30px_0px_lightgray]'}>
+        // shadow-[5px_0px_30px_0px_lightgray]
+        <div className={'flex flex-col min-w-[400px]'}>
             <div className={'min-h-[60px] p-2 flex gap-2'}>
                 <Input type={'search'} placeholder={'Поиск'} onChange={(e) => loadUsers(e.target.value)} />    
                 <Button>
