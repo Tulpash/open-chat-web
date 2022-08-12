@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite'
 
 import chat from '../stores/Chat.store'
 
+import ChatInfo from './ChatInfo'
 import ChatList from './ChatList'
 import ChatInput from './ChatInput'
 
@@ -12,7 +13,8 @@ const Chat = observer(() => {
                 {
                     chat.currentChat ?
                     <div className={'h-full w-full flex flex-col items-center'}>
-                        <div className={'w-[90%] h-full pb-10 flex flex-col gap-2'}>
+                        <ChatInfo />
+                        <div className={'w-[90%] md:w-[70%] h-full pb-5 md:pb-10 flex flex-col gap-2'}>
                             <ChatList />
                             <ChatInput />
                         </div>

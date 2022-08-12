@@ -29,7 +29,7 @@ const Sidebar = observer(() => {
                     <MdMenu className={'text-2xl text-gray-700'}/>
                 </Button>           
             </div>
-            <div className={'h-full overflow-auto hide-scroll'}>
+            <div className={'max-h-screen overflow-auto hide-scroll'}>
                 <UserList data={searchUsers.length > 0 ? searchUsers : chat._chats.slice()} />
             </div>
         </div>
