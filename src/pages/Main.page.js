@@ -4,7 +4,7 @@ import Chat from '../components/Chat'
 const MainPage = () => {
     return(
         <>
-            <div className={'flex bg-white h-screen w-screen'}>
+            <div className={'relative md:flex bg-white h-screen w-screen'}>
                 <Sidebar />
                 <Chat />
             </div>

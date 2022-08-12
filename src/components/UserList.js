@@ -4,8 +4,6 @@ import { observer } from 'mobx-react-lite'
 
 import chat from '../stores/Chat.store'
 
-import '../index.css'
-
 const UserList = (props) => {
     const data = props.data
 

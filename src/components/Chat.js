@@ -7,12 +7,12 @@ import ChatInput from './ChatInput'
 
 const Chat = observer(() => {
     return(
-        <div className={'w-full'}>
-            <div className={'w-full h-full bg-white'}>
+        <div className={`${chat.currentChat == null ? 'hidden' : ''} md:block absolute top-0 left-0 md:relative h-full w-full`}>
+            <div className={'w-full h-full bg-green-100'}>
                 {
-                    chat._currentChat ?
+                    chat.currentChat ?
                     <div className={'h-full w-full flex flex-col items-center'}>
-                        <div className={'w-[70%] h-full pb-10 flex flex-col gap-2'}>
+                        <div className={'w-[90%] h-full pb-10 flex flex-col gap-2'}>
                             <ChatList />
                             <ChatInput />
                         </div>
