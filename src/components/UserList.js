@@ -10,7 +10,7 @@ const UserList = (props) => {
     return(
         <>
             {
-                data.length > 0 ?
+                (data && data.length && data.length > 0) ?
                 <ul className={'p-2 text-gray-700'}>
                     {data.map((item) => <UserListRow key={item.id} data={item} />)}
                 </ul> :

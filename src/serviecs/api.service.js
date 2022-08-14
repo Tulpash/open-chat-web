@@ -42,7 +42,20 @@ const usersSearch = async (searchString) => {
     return await response.handle(response.json)
 }
 
-const usersAPI = { create: usersCreate, search: usersSearch }
+const usersTest = async (searchString, portion) => {
+    const url = `${API_PREFIX}/users/search`
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    const data = {
+        searchString: searchString,
+        portion: portion
+    }
+    const response = await fetch(url, { method: 'POST', headers: auth.headers(headers), body: JSON.stringify(data) })
+    return await response.handle(response.json)
+}
+
+const usersAPI = { create: usersCreate, search: usersSearch, test: usersTest }
 
 //Toast
 export const toastFetch = (promise, loading, success) => {
