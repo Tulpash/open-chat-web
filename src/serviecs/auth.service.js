@@ -6,7 +6,7 @@ export const headers = (headers) => {
         headers = {}
     }
 
-    headers['Authorization'] = `Bearer ${user.token()}`
+    headers['Authorization'] = `Bearer ${user.token}`
     return headers
 }
 
@@ -33,7 +33,7 @@ export const logout = () => {
 }
 
 export const isAuthenticated = () => {
-    return !!user.get()
+    return !!user.token
 }
 
 const auth = {

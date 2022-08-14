@@ -7,8 +7,8 @@ import auth from './auth.service'
 
 //
 const chatStart = async () => {
-    const conn = new HubConnectionBuilder().withUrl(`${API_PREFIX}/hubs/chat?token=${user.token()}`, {
-        accessTokenFactory: () => user.token()
+    const conn = new HubConnectionBuilder().withUrl(`${API_PREFIX}/hubs/chat?token=${user.token}`, {
+        accessTokenFactory: () => user.token
     }).withAutomaticReconnect().build()
     conn.start().catch((e) => console.log(`Connection failed: ${e}`))
     console.log(conn)

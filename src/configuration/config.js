@@ -42,7 +42,7 @@ window.addEventListener('onload', () => {
     user.set(userTmp)
     const chatTmp = JSON.parse(localStorage.getItem('chat'))
     chat.set(chatTmp)
-    if (user.token() !== null) api.chat.start()
+    if (user.token !== null) api.chat.start()
 })
 
 

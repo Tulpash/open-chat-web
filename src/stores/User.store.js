@@ -1,63 +1,50 @@
 import { makeAutoObservable } from 'mobx'
-import { MdFollowTheSigns } from 'react-icons/md'
 
 class UserStore {
 
-    _login = null
-    _firstName = null
-    _lastName = null
-    _token = null
-    _id = null
-    _unique = null
+    login = null
+    firstName = null
+    lastName = null
+    token = null
+    id = null
+    unique = null
 
     constructor() {
         makeAutoObservable(this)
     }
 
     set(data) {
-        this._login = data.login
-        this._firstName = data.firstName
-        this._lastName = data.lastName
-        this._token = data.token
-        this._id = data.id
-        this._unique = data.unique
+        this.login = data.login
+        this.firstName = data.firstName
+        this.lastName = data.lastName
+        this.token = data.token
+        this.id = data.id
+        this.unique = data.unique
     }
 
     get() {
         const data = {
-            login: this._login,
-            firstName: this._firstName,
-            lastName: this._lastName,
-            token: this._token,
-            id: this._id,
-            unique: tjis._unique
+            login: this.login,
+            firstName: this.firstName,
+            lastName: this.lastName,
+            token: this.token,
+            id: this.id,
+            unique: this.unique
         }
         return data
     }
 
     clear() {
-        this._login = null
-        this._firstName = null
-        this._lastName = null
-        this._token = null
-        this._id = null
-        this._unique = null
-    }
-
-    login() {
-        return this._login
+        this.login = null
+        this.firstName = null
+        this.lastName = null
+        this.token = null
+        this.id = null
+        this.unique = null
     }
 
     fullName() {
-        return `${this._firstName} ${this._lastName}`
-    }
-
-    token() {
-        return this._token
-    }
-
-    unique() {
-        return this._unique
+        return `${this.firstName} ${this.lastName}`
     }
 }
 
