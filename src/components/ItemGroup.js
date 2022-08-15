@@ -1,6 +1,6 @@
 const ItemGroup = (props) => {
     return(
-        <div className={'flex flex-row w-full bg-white rounded-full [&>*]:rounded-none [&>*:first-child]:rounded-l-full [&>*:first-child]:rounded-r-none [&>*:last-child]:rounded-l-none [&>*:last-child]:rounded-r-full'}>
+        <div className={'flex flex-row w-full bg-white rounded-xl [&>*]:rounded-none [&>*:first-child]:rounded-l-xl [&>*:first-child]:rounded-r-none [&>*:last-child]:rounded-l-none [&>*:last-child]:rounded-r-xl'}>
             {props.children}
         </div>
     )

@@ -48,5 +48,14 @@
             "server": "Web API",
             "web_client": "Web client"
         }
+    },
+    "menu_drop": {
+        "add_chat": "Add chat",
+        "profile": "Account",
+        "settings": "Settings",
+        "logout": "Logout"
+    },
+    "chat_list": {
+        "global": "Global Search"
     }
 }

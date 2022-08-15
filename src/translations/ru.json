@@ -48,5 +48,14 @@
             "server": "Веб API",
             "web_client": "Веб клиент"
         }
+    },
+    "menu_drop": {
+        "add_chat": "Создать чат",
+        "profile": "Профиль",
+        "settings": "Настройки",
+        "logout": "Выход"
+    },
+    "chat_list": {
+        "global": "Глобальный поиск"
     }
 }

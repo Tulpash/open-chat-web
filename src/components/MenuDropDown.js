@@ -1,19 +1,35 @@
-import { MdMenu, MdSettings, MdLogout } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
+
+import { useTranslation } from 'react-i18next'
+import { MdMenu, MdSettings, MdLogout, MdPerson, MdAdd } from 'react-icons/md'
 
 import auth from '../serviecs/auth.service'
 import DropDown from './DropDown'
 
 const MenuDropDown = () => {
+    const { t } = useTranslation()
+    const navigate = useNavigate()
+
     const menu = [
         {
+            click: () => console.log('add chat'),
+            icon: <MdAdd className={'text-xl'} />,
+            text: t('menu_drop.add_chat')
+        },
+        {
+            click: () => navigate('/profile'),
+            icon: <MdPerson className={'text-xl'} />,
+            text: t('menu_drop.profile')
+        },
+        {
             click: () => console.log('settings'),
-            icon: <MdSettings />,
-            text: 'Настройки'
+            icon: <MdSettings className={'text-xl'} />,
+            text: t('menu_drop.settings')
         },
         {
             click: () => { auth.logout(); window.location.reload() },
-            icon: <MdLogout />,
-            text: 'Выход'
+            icon: <MdLogout className={'text-xl'} />,
+            text: t('menu_drop.logout')
         }
     ]
 

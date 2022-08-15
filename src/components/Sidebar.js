@@ -4,13 +4,13 @@ import { observer } from 'mobx-react-lite'
 
 import Input from './Input'
 import MenuDropDown from './MenuDropDown'
-import UserList from './UserList'
-import ChatList from './ChatList'
+import LocalChatList from './LocalChatList'
+import GlobalChatList from './GlobalChatList'
 
 import '../index.css'
 
 const Sidebar = observer(() => {
-    const [searchString, setSearchString] = useState(null)
+    const [searchString, setSearchString] = useState('')
 
     return(
         <div className={`absolute top-0 left-0 min-w-full min-h-full md:relative md:flex md:flex-col md:min-w-[350px]`}>
@@ -18,9 +18,9 @@ const Sidebar = observer(() => {
                 <Input type={'search'} placeholder={'Поиск'} onChange={(e) => setSearchString(e.target.value)} />      
                 <MenuDropDown />
             </div>
-            <div className={'pt-[66px] md:pt-0 min-h-[calc(100%-66px)] overflow-auto divide-y-2 divide-gray-200 hide-scroll p-2'}>
-                <ChatList searchString={searchString} />
-                <UserList searchString={searchString} />
+            <div className={'pt-[66px] md:pt-0 min-h-[calc(100%-66px)] overflow-auto hide-scroll p-2'}>
+                <LocalChatList searchString={searchString} />  
+                <GlobalChatList searchString={searchString} />       
             </div>
         </div>
     )
