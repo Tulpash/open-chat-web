@@ -33,16 +33,7 @@ const usersCreate = async (email, password, firstName, lastName) => {
 }
 
 //search users
-const usersSearch = async (searchString) => {
-    const url = `${API_PREFIX}/users/search`
-    const headers = {
-        'Content-Type': 'application/json'
-    }
-    const response = await fetch(url, { method: 'POST', headers: auth.headers(headers), body: JSON.stringify(searchString) })
-    return await response.handle(response.json)
-}
-
-const usersTest = async (searchString, portion) => {
+const usersSearch = async (searchString, portion) => {
     const url = `${API_PREFIX}/users/search`
     const headers = {
         'Content-Type': 'application/json'
@@ -55,7 +46,39 @@ const usersTest = async (searchString, portion) => {
     return await response.handle(response.json)
 }
 
-const usersAPI = { create: usersCreate, search: usersSearch, test: usersTest }
+const usersAPI = { create: usersCreate, search: usersSearch }
+
+//Search global
+const searchGlobal = async (searchString) => {
+    const url = `${API_PREFIX}/search/global`
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    const response = await fetch(url, { method: 'POST', headers: auth.headers(headers), body: JSON.stringify(searchString) })
+    return await response.handle(response.json)
+}
+
+//Search local
+const searchLocal = async (searchString) => {
+    const url = `${API_PREFIX}/search/local?searchString=${searchString}`
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    const response = await fetch(url, { method: 'POST', headers: auth.headers(headers), body: JSON.stringify(searchString) })
+    return await response.handle(response.json)
+}
+
+//Serach messages
+const searchMessages = async (searchString) => {
+    const url = `${API_PREFIX}/search/messages?searchString=${searchString}`
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    const response = await fetch(url, { method: 'POST', headers: auth.headers(headers), body: JSON.stringify(searchString) })
+    return await response.handle(response.json)
+}
+
+const searchAPI = { global: searchGlobal, local: searchLocal, messages: searchMessages }
 
 //Toast
 export const toastFetch = (promise, loading, success) => {
@@ -69,6 +92,6 @@ export const toastFetch = (promise, loading, success) => {
 const toastAPI = { fetch: toastFetch } 
 
 //
-const API = { chat: chatAPI, users: usersAPI, toast: toastAPI }
+const API = { chat: chatAPI, users: usersAPI, search: searchAPI, toast: toastAPI }
 
 export default API

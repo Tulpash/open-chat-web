@@ -1,24 +1,51 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { observer } from 'mobx-react-lite'
+import { TailSpin } from 'react-loader-spinner'
 
+import api from '../serviecs/api.service'
 import chat from '../stores/Chat.store'
 
 const UserList = (props) => {
-    const data = props.data
+    const [data, setData] = useState([])
+    const [isLoading, setisLoading] = useState(false)
+    
+    useEffect(() => {
+        if (!props.searchString) {
+           setData([])
+           return
+        }
+        setisLoading(true)
+        api.search.global(props.searchString)
+            .then(res => setData(res))
+            .then(() => setisLoading(false))
+            .catch(console.log)
+    }, [props.searchString])
 
     return(
-        <>
+        <div className={'flex flex-col'}>
+            <div className={'w-full text-gray-300 p-2'}>
+                Глобальный поиск
+            </div>
             {
-                (data && data.length && data.length > 0) ?
-                <ul className={'p-2 text-gray-700'}>
-                    {data.map((item) => <UserListRow key={item.id} data={item} />)}
-                </ul> :
-                <div className={'p-10 h-full w-full text-gray-700 flex justify-center items-center'}>
-                    Что бы создать чат найдите человека и напишите ему
+                isLoading && 
+                <div className={'w-full flex justify-center items-center'}>
+                    <TailSpin color={'#d1d5db'} height={60} width={60} />
                 </div>
             }
-        </>
+            {
+                !isLoading && (data.length == 0) &&
+                <div className={'p-10 w-full text-gray-700 flex justify-center items-center'}>
+                    Ничего не найдено
+                </div>
+            }
+            {
+                !isLoading && (data.length > 0) &&
+                <ul className={'mb-2 mx-2 text-gray-700'}>
+                    {data.map((item, index) => <UserListRow key={index} data={item} />)}
+                </ul>
+            }
+        </div>
     )
 }
 
