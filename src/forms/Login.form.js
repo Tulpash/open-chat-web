@@ -50,7 +50,6 @@ const LoginForm = () => {
                                 <MdLock />
                                 <FB.Input type={'password'} name={'password'} placeholder={t('forms.login.password')} onBlur={handleBlur} onChange={handleChange} value={values.password} />
                             </FB.Row>
-                            <FB.Tags />
                         </FB.InputGroup>
                         {
                             ((touched.login && errors.login) || (touched.password && errors.password)) &&

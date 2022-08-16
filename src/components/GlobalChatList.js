@@ -63,7 +63,7 @@ const UserListRow = observer((props) => {
     return(
         <li className={`w-full h-[70px] rounded-xl cursor-pointer ${chat.currentChat == user.id ? 'bg-blue-400' : 'bg-transparent hover:bg-gray-100'}  flex items-center`} onClick={() => setChat(user.id)}>
             <div className={'flex justify-center items-center w-[70px] p-2'}>
-                <img className={`rounded-full`} src={'https://www.etexstore.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'} alt={'user'} />
+                <img className={`rounded-full`} src={user.logoUrl} alt={'user'} />
             </div>
             <div className={'flex flex-col gap-0'}>
                 <span className={`text-lg ${chat.currentChat == user.id ? 'text-white' : 'text-gray-700'}`}>{user.name}</span>

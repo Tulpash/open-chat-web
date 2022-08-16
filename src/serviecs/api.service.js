@@ -17,7 +17,7 @@ const chatStart = async () => {
 
 //Create new chat
 const chatCreate = async (name, users) => {
-    const url = `${API_PREFIX}/chat/create`
+    const url = `${API_PREFIX}/chats/create`
     const data = {
         Name: name,
         Users: users
@@ -31,7 +31,7 @@ const chatCreate = async (name, users) => {
 
 //Find chats
 const chatSearch = async (searchString) => {
-    const url = `${API_PREFIX}/chat/search`
+    const url = `${API_PREFIX}/chats/search`
     const headers = {
         'Content-Type': 'application/json'
     }
@@ -68,7 +68,16 @@ const usersChats = async (searchString) => {
     return await response.handle(response.json)
 }
 
-const usersAPI = { create: usersCreate, chats: usersChats }
+const usersSearch = async (searchString) => {
+    const url = `${API_PREFIX}/users/search`
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    const response = await fetch(url, { method: 'POST', headers: auth.headers(headers), body: JSON.stringify(searchString) })
+    return await response.handle(response.json)
+}
+
+const usersAPI = { create: usersCreate, chats: usersChats, search: usersSearch }
 
 //Toast
 export const toastFetch = (promise, loading, success) => {
