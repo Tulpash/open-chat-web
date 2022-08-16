@@ -11,7 +11,7 @@ const LoginPage = () => {
     const { t } = useTranslation()
 
     return(
-        <div className={`h-screen w-screen flex flex-col-reverse items-center justify-center gap-24 md:gap-0 md:flex-row bg-gray-100`}>
+        <div className={`h-screen w-screen flex flex-col-reverse items-center justify-center gap-24 md:gap-0 md:flex-row bg-white`}>
             <div className={'fixed top-[10px] right-[10px]'}>
                 <LanguageSelector />
             </div>
