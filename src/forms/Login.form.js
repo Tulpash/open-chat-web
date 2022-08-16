@@ -28,7 +28,7 @@ const LoginForm = () => {
     const signIn = useCallback(async (login, password) => {
         await auth.signin(login, password)
         await api.chat.start()
-        navigate('/main')
+        navigate('/chat')
     }, [])
 
     const onSubmit = useCallback((vals) => {
@@ -50,6 +50,7 @@ const LoginForm = () => {
                                 <MdLock />
                                 <FB.Input type={'password'} name={'password'} placeholder={t('forms.login.password')} onBlur={handleBlur} onChange={handleChange} value={values.password} />
                             </FB.Row>
+                            <FB.Tags />
                         </FB.InputGroup>
                         {
                             ((touched.login && errors.login) || (touched.password && errors.password)) &&

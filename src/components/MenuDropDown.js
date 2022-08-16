@@ -12,7 +12,7 @@ const MenuDropDown = () => {
 
     const menu = [
         {
-            click: () => console.log('add chat'),
+            click: () => navigate('/chat/create'),
             icon: <MdAdd className={'text-xl'} />,
             text: t('menu_drop.add_chat')
         },

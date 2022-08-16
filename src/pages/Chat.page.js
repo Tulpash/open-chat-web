@@ -1,7 +1,7 @@
 import Sidebar from '../components/Sidebar'
 import Chat from '../components/Chat'
 
-const MainPage = () => {
+const ChatPage = () => {
     return(
         <>
             <div className={'relative md:flex bg-white h-screen w-screen'}>
@@ -12,4 +12,4 @@ const MainPage = () => {
     )
 }
 
-export default MainPage
+export default ChatPage

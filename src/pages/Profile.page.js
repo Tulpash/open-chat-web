@@ -1,7 +1,9 @@
 const ProfilePage = () => {
     return(
         <>
-            Profile
+            <div className={'w-sreen h-screen'}>
+                
+            </div>
         </>
     )
 }

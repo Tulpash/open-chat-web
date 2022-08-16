@@ -12,6 +12,10 @@
   outline: none !important;
 }
 
+input:-webkit-autofill { 
+  -webkit-background-clip: text;
+}
+
 .hide-scroll::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
 }

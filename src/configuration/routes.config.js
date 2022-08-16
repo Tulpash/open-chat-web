@@ -1,8 +1,11 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 
 import ProtectedPage from '../configuration/ProtectedPage'
+import PublicLayout from '../layouts/Public.layout'
+
 import LoginPage from '../pages/Login.page'
-import MainPage from '../pages/Main.page'
+import ChatPage from '../pages/Chat.page'
+import CreateChatPage from '../pages/CreateChat.page'
 import ProfilePage from '../pages/Profile.page'
 
 const RoutesConfig = () => {
@@ -10,8 +13,11 @@ const RoutesConfig = () => {
         <BrowserRouter>
             <Routes>
                 <Route exact path={'/'} element={<LoginPage />} />
-                <Route path={'/main'} element={<ProtectedPage><MainPage /></ProtectedPage>} />
-                <Route path={'/profile'} element={<ProtectedPage><ProfilePage /></ProtectedPage>} />
+                <Route path={'/chat'}>
+                    <Route exact path={''} element={<ProtectedPage><ChatPage /></ProtectedPage>} />
+                    <Route path={'create'} element={<ProtectedPage><PublicLayout><CreateChatPage /></PublicLayout></ProtectedPage>} />
+                </Route>
+                <Route path={'/profile'} element={<ProtectedPage><PublicLayout><ProfilePage /></PublicLayout></ProtectedPage>} />
             </Routes>
         </BrowserRouter>
     )
