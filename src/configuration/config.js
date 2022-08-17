@@ -24,7 +24,7 @@ Response.prototype.handle = async function (read) {
 //     localStorage.setItem('user', JSON.stringify(userTmp))
 // }
 
-window.addEventListener('onbeforeunload', () => {
+window.addEventListener('beforeunload', () => {
     const userTmp = user.get()
     localStorage.setItem('user', JSON.stringify(userTmp))
     const chatTmp = chat.get()
@@ -37,7 +37,7 @@ window.addEventListener('onbeforeunload', () => {
 //     if (user.token() !== null) api.chat.start()
 // }
 
-window.addEventListener('onload', () => {
+window.addEventListener('oad', () => {
     const userTmp = JSON.parse(localStorage.getItem('user'))
     user.set(userTmp)
     const chatTmp = JSON.parse(localStorage.getItem('chat'))

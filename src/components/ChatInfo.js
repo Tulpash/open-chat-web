@@ -9,7 +9,7 @@ const ChatInfo = observer(() => {
     return(
         <div className={'w-full p-2 min-h-[50px] bg-white text-gray-700 flex justify-between'}>
             <div>
-                <Button onClick={() => chat.currentChat = null}>
+                <Button onClick={() => chat.chatId = null}>
                     <MdArrowBack className={'text-xl'} />
                 </Button>
             </div>

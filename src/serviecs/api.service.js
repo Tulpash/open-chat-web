@@ -1,18 +1,25 @@
-import { HubConnectionBuilder } from '@microsoft/signalr'
+import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr'
 import toast from 'react-hot-toast'
 
 import { API_PREFIX } from '../configuration/config'
 import user from '../stores/User.store'
+import chat from '../stores/Chat.store'
 import auth from './auth.service'
 
 //Chat API
 //Start SignalR connection
-const chatStart = async () => {
+const chatStart = () => {
     const conn = new HubConnectionBuilder().withUrl(`${API_PREFIX}/hubs/chat?token=${user.token}`, {
         accessTokenFactory: () => user.token
-    }).withAutomaticReconnect().build()
-    conn.start().catch((e) => console.log(`Connection failed: ${e}`))
-    console.log(conn)
+    }).configureLogging(LogLevel.Information).withAutomaticReconnect().build()
+    conn.start().then(() => chat.conn = conn).catch((e) => console.log(`Connection failed: ${e}`))
+    
+    conn.on('GetMessage', (chatId, text) => console.log(`get: ${chatId} | ${text}`))
+}
+
+const chatSendTextMessage = async (text) => {
+    console.log(`send: ${chat.chatId} | ${text}`)
+    await chat.conn.invoke('SendTextMessage', chat.chatId, text)
 }
 
 //Create new chat
@@ -37,7 +44,7 @@ const chatSearch = async (searchString) => {
     return await response.handle(response.json)
 }
 
-const chatAPI = { start: chatStart, create: chatCreate, search: chatSearch }
+const chatAPI = { start: chatStart, create: chatCreate, search: chatSearch, sendTextMessage: chatSendTextMessage }
 
 //User API
 //registration

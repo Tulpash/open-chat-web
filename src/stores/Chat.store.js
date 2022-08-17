@@ -2,45 +2,51 @@ import { makeAutoObservable } from 'mobx'
 
 class ChatStore {
 
-    _connection = null
-    _chats = []
-    _currentChat = null
+    connection = null
+    currentChatId = null
+    currentChatInfo = null
 
     constructor() {
         makeAutoObservable(this)
     }
 
-    set connection(conn) {
-        this._connection = conn
-    }
-
-    get connection() {
-        return this._connection
-    }
-
     get() {
         const data = {
-            chats: this._chats,
-            currentChat: this._currentChat
+            connection: this.connection,
+            currentChatId: this.currentChatId,
+            currentChatInfo: this.currentChatInfo
         }
         return data
     }
 
     set(data) {
-        this.chats = data.chats
-        this.currentChat = data.currentChat
+        this.connection = data.connection
+        this.currentChatId = data.currentChatId
+        this.currentChatInfo = data.currentChatInfo
     }
 
-    chatCount() {
-        return this.chats.length
+    set conn(data) {
+        this.connection = data
     }
 
-    set currentChat(data) {
-        this._currentChat = data
+    get conn() {
+        return this.connection
     }
 
-    get currentChat() {
-        return this._currentChat
+    set chatId(data) {
+        this.currentChatId = data
+    }
+
+    get chatId() {
+        return this.currentChatId
+    }
+
+    set chatInfo(data) {
+        this.currentChatInfo = data
+    }
+
+    get chatInfo() {
+        return this.currentChatInfo
     }
 }
 
