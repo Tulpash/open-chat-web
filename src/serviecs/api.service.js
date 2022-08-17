@@ -17,10 +17,11 @@ const chatStart = async () => {
 
 //Create new chat
 const chatCreate = async (logoFile, name, userIds) => {
-    const url = `${API_PREFIX}/chat/create`
+    const url = `${API_PREFIX}/chats/create`
     const data = new FormData();
     data.append('Logo', logoFile)
     data.append('Name', name)
+    userIds.push(user.id)
     userIds.forEach((userId, index) => data.append(`Users[${index}]`, userId))
     const response = await fetch(url, { method: 'POST', headers: auth.headers(), body: data })
     return await response.handle(null) 
