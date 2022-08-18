@@ -50,18 +50,21 @@ const ChatList = (props) => {
 const ChatListRow = observer((props) => {
     const data = props.data
     
-    const setChat = useCallback((chatId) => {
-        chat.chatId = chatId
+    const setChat = useCallback(async (chatId) => {
+        chat.id = chatId
+        const response = await api.chat.info(chatId) 
+        chat.info = response
+        console.log(response)
     }, [])
 
     return(
-        <li className={`w-full h-[70px] rounded-xl cursor-pointer ${chat.chatId == data.id ? 'bg-blue-400' : 'bg-transparent hover:bg-gray-100'}  flex items-center`} onClick={() => setChat(data.id)}>
+        <li className={`w-full h-[70px] rounded-xl cursor-pointer ${chat.id == data.id ? 'bg-blue-400' : 'bg-transparent hover:bg-gray-100'}  flex items-center`} onClick={() => setChat(data.id)}>
             <div className={'flex justify-center items-center w-[70px] h-full  p-2'}>
                 <img className={`rounded-xl h-full object-cover`} src={data.logoUrl} alt={'user'} />
             </div>
             <div className={'flex flex-col gap-0'}>
-                <span className={`text-lg ${chat.chatId == data.id ? 'text-white' : 'text-gray-700'}`}>{data.name}</span>
-                <span className={`${chat.chatId == data.id ? 'text-white' : 'text-gray-400'}`}>{data.lastMessage}</span>
+                <span className={`text-lg ${chat.id == data.id ? 'text-white' : 'text-gray-700'}`}>{data.name}</span>
+                <span className={`${chat.id == data.id ? 'text-white' : 'text-gray-400'}`}>{data.lastMessage}</span>
             </div>
         </li>
     )

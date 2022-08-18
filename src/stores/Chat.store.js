@@ -3,8 +3,8 @@ import { makeAutoObservable } from 'mobx'
 class ChatStore {
 
     connection = null
-    currentChatId = null
     currentChatInfo = null
+    currentChatId = null
 
     constructor() {
         makeAutoObservable(this)
@@ -33,20 +33,24 @@ class ChatStore {
         return this.connection
     }
 
-    set chatId(data) {
+    set id(data) {
         this.currentChatId = data
     }
 
-    get chatId() {
+    get id() {
         return this.currentChatId
     }
 
-    set chatInfo(data) {
+    set info(data) {
         this.currentChatInfo = data
     }
 
-    get chatInfo() {
+    get info() {
         return this.currentChatInfo
+    }
+
+    addMessage(data) {
+        this.currentChatInfo.messages.push(data)
     }
 }
 

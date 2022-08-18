@@ -8,11 +8,20 @@ import Button from './Button'
 const ChatInfo = observer(() => {
     return(
         <div className={'w-full p-2 min-h-[50px] bg-white text-gray-700 flex justify-between'}>
-            <div>
-                <Button onClick={() => chat.chatId = null}>
+            <div className={'flex gap-2 items-center'}>
+                <Button onClick={() => chat.id = null}>
                     <MdArrowBack className={'text-xl'} />
                 </Button>
-            </div>
+                {
+                    chat.info && 
+                    <>
+                        <div className={'flex justify-center items-center w-[50px] h-full  p-2'}>
+                            <img className={'rounded-xl h-full object-cover'} src={chat.info.logoUrl}/>
+                        </div>
+                        <span>{chat.info.name}</span>
+                    </>
+                }
+            </div>           
             <div>
                 <Button>
                     <MdInfoOutline className={'text-xl'} />

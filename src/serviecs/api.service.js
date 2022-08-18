@@ -14,12 +14,15 @@ const chatStart = () => {
     }).configureLogging(LogLevel.Information).withAutomaticReconnect().build()
     conn.start().then(() => chat.conn = conn).catch((e) => console.log(`Connection failed: ${e}`))
     
-    conn.on('GetMessage', (chatId, text) => console.log(`get: ${chatId} | ${text}`))
+    conn.on('GetMessage', (message) => {
+        console.log(message)
+        chat.addMessage(message);
+    })
 }
 
 const chatSendTextMessage = async (text) => {
-    console.log(`send: ${chat.chatId} | ${text}`)
-    await chat.conn.invoke('SendTextMessage', chat.chatId, text)
+    console.log(`send: ${chat.id} | ${text}`)
+    await chat.conn.invoke('SendTextMessage', chat.id, text, user.id)
 }
 
 //Create new chat
@@ -44,7 +47,14 @@ const chatSearch = async (searchString) => {
     return await response.handle(response.json)
 }
 
-const chatAPI = { start: chatStart, create: chatCreate, search: chatSearch, sendTextMessage: chatSendTextMessage }
+//Get chat info (owner, logoUrl, name, users, messages,)
+const chatInfo = async (chatId) => {
+    const url = `${API_PREFIX}/chats/${chatId}/info`
+    const response = await fetch(url, { method: 'GET', headers: auth.headers() })
+    return await response.handle(response.json)
+}
+
+const chatAPI = { start: chatStart, create: chatCreate, search: chatSearch, sendTextMessage: chatSendTextMessage, info: chatInfo }
 
 //User API
 //registration
