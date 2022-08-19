@@ -7,6 +7,7 @@ import LoginPage from '../pages/Login.page'
 import ChatPage from '../pages/Chat.page'
 import CreateChatPage from '../pages/CreateChat.page'
 import ProfilePage from '../pages/Profile.page'
+import ChatInfoPage from '../pages/ChatInfo.page'
 
 const RoutesConfig = () => {
     return(
@@ -16,6 +17,7 @@ const RoutesConfig = () => {
                 <Route path={'/chat'}>
                     <Route exact path={''} element={<ProtectedPage><ChatPage /></ProtectedPage>} />
                     <Route path={'create'} element={<ProtectedPage><PublicLayout><CreateChatPage /></PublicLayout></ProtectedPage>} />
+                    <Route path={'info'} element={<ProtectedPage><PublicLayout><ChatInfoPage /></PublicLayout></ProtectedPage>} />
                 </Route>
                 <Route path={'/profile'} element={<ProtectedPage><PublicLayout><ProfilePage /></PublicLayout></ProtectedPage>} />
             </Routes>

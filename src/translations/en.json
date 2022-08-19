@@ -21,8 +21,19 @@
             "toast": {
                 "loading": "Sign up",
                 "success": "Successfull"
-            }
+            }   
         },
+        "edit_user": {
+            "title": "Account",
+            "login": "Email",
+            "first_name": "Name",
+            "last_name": "Last name",
+            "submit": "Save",
+            "toast": {
+                "loading": "Editing",
+                "success": "Successful"
+            }
+        },       
         "errors": {
             "email": "Incorrect 'Email'",
             "email_req": "The field 'Email' is required",

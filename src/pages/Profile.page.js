@@ -1,10 +1,10 @@
+import EditProfileForm from '../forms/EditProfile.form'
+
 const ProfilePage = () => {
     return(
-        <>
-            <div className={'w-sreen h-screen'}>
-                
-            </div>
-        </>
+        <div className={'w-[400px]'}>
+            <EditProfileForm />
+        </div>
     )
 }
 

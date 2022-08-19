@@ -15,13 +15,11 @@ const chatStart = () => {
     conn.start().then(() => chat.conn = conn).catch((e) => console.log(`Connection failed: ${e}`))
     
     conn.on('GetMessage', (message) => {
-        console.log(message)
-        chat.addMessage(message);
+        chat.addMessage(message)
     })
 }
 
 const chatSendTextMessage = async (text) => {
-    console.log(`send: ${chat.id} | ${text}`)
     await chat.conn.invoke('SendTextMessage', chat.id, text, user.id)
 }
 
@@ -31,6 +29,7 @@ const chatCreate = async (logoFile, name, userIds) => {
     const data = new FormData();
     data.append('Logo', logoFile)
     data.append('Name', name)
+    data.append('OwnerId', user.id)
     userIds.push(user.id)
     userIds.forEach((userId, index) => data.append(`Users[${index}]`, userId))
     const response = await fetch(url, { method: 'POST', headers: auth.headers(), body: data })
@@ -73,6 +72,21 @@ const usersCreate = async (email, password, firstName, lastName) => {
     return await response.handle(null) 
 }
 
+//edit user
+const usersEdit = async (email, firstName, lastName) => {
+    const url = `${API_PREFIX}/users/${user.id}/edit`
+    const data = {
+        Email: email,
+        Firstname: firstName,
+        LastName: lastName
+    }
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+    const response = await fetch(url, { method: 'POST', header: auth.headers(headers), body: JSON.stringify(data) })
+    return await response.handle(null)
+}
+
 //search users
 const usersChats = async (searchString) => {
     const url = `${API_PREFIX}/users/${user.id}/chats`
@@ -92,7 +106,7 @@ const usersSearch = async (searchString) => {
     return await response.handle(response.json)
 }
 
-const usersAPI = { create: usersCreate, chats: usersChats, search: usersSearch }
+const usersAPI = { create: usersCreate, edit: usersEdit, chats: usersChats, search: usersSearch }
 
 //Toast
 export const toastFetch = (promise, loading, success) => {

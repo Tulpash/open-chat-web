@@ -1,11 +1,16 @@
-import { MdArrowBack, MdInfoOutline } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
+
+import { MdArrowBack, MdInfoOutline, MdEdit } from 'react-icons/md'
 import { observer } from 'mobx-react-lite'
 
 import chat from '../stores/Chat.store'
+import user from '../stores/User.store'
 
 import Button from './Button'
 
 const ChatInfo = observer(() => {
+    const navigate = useNavigate()
+
     return(
         <div className={'w-full p-2 min-h-[50px] bg-white text-gray-700 flex justify-between'}>
             <div className={'flex gap-2 items-center'}>
@@ -23,7 +28,13 @@ const ChatInfo = observer(() => {
                 }
             </div>           
             <div>
-                <Button>
+                {
+                    chat.ownewrId == user.id &&
+                    <Button>
+                        <MdEdit className={'text-xl'} />
+                    </Button>
+                }
+                <Button onClick={() => navigate('/chat/info')} >
                     <MdInfoOutline className={'text-xl'} />
                 </Button>
             </div>

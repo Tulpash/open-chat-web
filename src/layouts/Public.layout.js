@@ -14,7 +14,7 @@ const PublicLayout = (props) => {
                     <MdArrowBack className={'text-2xl text-gray-700'} />
                 </Button>
             </div>
-            <div className={'w-[90%] md:w-[70%] min-h-[calc(100%-70px)]'}>
+            <div className={'w-[90%] md:w-[70%] min-h-[calc(100%-70px)] flex justify-center'}>
                 {props.children}
             </div>
         </div>

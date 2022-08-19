@@ -23,6 +23,17 @@
                 "success": "Успешно"
             }
         },
+        "edit_user": {
+            "title": "Профиль",
+            "login": "Почта",
+            "first_name": "Имя",
+            "last_name": "Фамилия",
+            "submit": "Сохранить",
+            "toast": {
+                "loading": "Изменение",
+                "success": "Сохранено"
+            }
+        },  
         "errors": {
             "email": "Введен некорректный Email",
             "email_req": "Поле 'Email' обязательно для заполнения",
