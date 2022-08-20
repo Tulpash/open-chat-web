@@ -12,7 +12,7 @@ const Chat = observer(() => {
             <div className={'w-full h-full bg-green-100'}>
                 {
                     chat.id ?
-                    <div className={'h-full w-full flex flex-col items-center'}>
+                    <div className={'h-full w-full flex flex-col gap-2 items-center'}>
                         <ChatInfo />
                         <div className={'w-[90%] md:w-[70%] h-full pb-5 md:pb-10 flex flex-col gap-2'}>
                             <ChatView />

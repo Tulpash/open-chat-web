@@ -48,7 +48,7 @@ const CreateChatPage = () => {
 
     return(
         <>
-        <Formik initialValues={initialValues} validateOnBlur validationSchema={validationSchema} onSubmit={onSubmit} >
+            <Formik initialValues={initialValues} validateOnBlur validationSchema={validationSchema} onSubmit={onSubmit} >
                 {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit}) => (
                     <FB.Form>
                         <FB.Header>

@@ -27,7 +27,9 @@ const EditProfileForm = observer(() => {
     }
     
     const createUser = useCallback(async (email, firstName, lastName) => {
-        await api.users.edit(email, firstName, lastName)
+        const res = await api.users.edit(email, firstName, lastName)
+        console.log(res)
+        user.set(res)
     }, [])
 
     const onSubmit = useCallback((vals) => {

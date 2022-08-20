@@ -5,6 +5,7 @@ class ChatStore {
     connection = null
     currentChatInfo = null
     currentChatId = null
+    currentMessageText = ''
 
     constructor() {
         makeAutoObservable(this)
@@ -14,7 +15,8 @@ class ChatStore {
         const data = {
             connection: this.connection,
             currentChatId: this.currentChatId,
-            currentChatInfo: this.currentChatInfo
+            currentChatInfo: this.currentChatInfo,
+            currentMessageText: this.currentMessageText 
         }
         return data
     }
@@ -23,6 +25,7 @@ class ChatStore {
         this.connection = data.connection
         this.currentChatId = data.currentChatId
         this.currentChatInfo = data.currentChatInfo
+        this.currentMessageText  = data.currentMessageText 
     }
 
     set conn(data) {
@@ -51,6 +54,19 @@ class ChatStore {
 
     addMessage(data) {
         this.currentChatInfo.messages.push(data)
+    }
+
+    //Curremt text editing
+    setMessageText(text) {
+        this.currentMessageText = text
+    }
+
+    addEmoji(emoji) {
+        this.currentMessageText += emoji
+    }
+
+    clearMessageText() {
+        this.currentMessageText = ''
     }
 }
 

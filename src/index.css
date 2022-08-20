@@ -11,6 +11,9 @@
 *:focus {
   outline: none !important;
 }
+html {
+  overflow: hidden;
+}
 
 input:-webkit-autofill { 
   -webkit-background-clip: text;

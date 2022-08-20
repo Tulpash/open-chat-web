@@ -12,7 +12,7 @@ const ChatInfo = observer(() => {
     const navigate = useNavigate()
 
     return(
-        <div className={'w-full p-2 min-h-[50px] bg-white text-gray-700 flex justify-between'}>
+        <div className={'w-full p-2 min-h-[65px] bg-white text-gray-700 flex justify-between'}>
             <div className={'flex gap-2 items-center'}>
                 <Button onClick={() => chat.id = null}>
                     <MdArrowBack className={'text-xl'} />
@@ -27,9 +27,9 @@ const ChatInfo = observer(() => {
                     </>
                 }
             </div>           
-            <div>
+            <div className={'flex'}>
                 {
-                    chat.ownewrId == user.id &&
+                    (chat.info && chat.info.ownerId == user.id) &&
                     <Button>
                         <MdEdit className={'text-xl'} />
                     </Button>

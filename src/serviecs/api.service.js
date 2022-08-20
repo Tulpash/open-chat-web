@@ -19,8 +19,13 @@ const chatStart = () => {
     })
 }
 
-const chatSendTextMessage = async (text) => {
-    await chat.conn.invoke('SendTextMessage', chat.id, text, user.id)
+const chatSendTextMessage = async () => {
+    if (chat.currentMessageText == null || chat.currentMessageText == '') {
+        toast.error('Введите кест сообщения')
+        return
+    }       
+    await chat.conn.invoke('SendTextMessage', chat.id, chat.currentMessageText, user.id) 
+    chat.clearMessageText()
 }
 
 //Create new chat
@@ -83,8 +88,8 @@ const usersEdit = async (email, firstName, lastName) => {
     const headers = {
         'Content-Type': 'application/json'
     }
-    const response = await fetch(url, { method: 'POST', header: auth.headers(headers), body: JSON.stringify(data) })
-    return await response.handle(null)
+    const response = await fetch(url, { method: 'POST', headers: auth.headers(headers), body: JSON.stringify(data) })
+    return await response.handle(response.json)
 }
 
 //search users
