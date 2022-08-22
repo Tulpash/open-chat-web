@@ -1,7 +1,7 @@
 {
     "forms": {
         "login": {
-            "title": "Вход",
+            "title": "Вход \u2728",
             "login": "Логин",
             "password": "Пароль",
             "submit": "Войти",
