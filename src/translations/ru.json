@@ -68,5 +68,9 @@
     },
     "chat_list": {
         "global": "Глобальный поиск"
+    },
+    "messages": {
+        "chat_empty": "Чтобы начать общение выберите чат",
+        "empty_chat_list": "Пусто"
     }
 }

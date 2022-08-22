@@ -68,5 +68,9 @@
     },
     "chat_list": {
         "global": "Global Search"
+    },
+    "messages": {
+        "empty_chat": "Select a chat to start messaging",
+        "empty_chat_list": "Empty"
     }
 }

@@ -22,7 +22,7 @@ const MenuDropDown = () => {
             text: t('menu_drop.profile')
         },
         {
-            click: () => console.log('settings'),
+            click: () => navigate('/settings'),
             icon: <MdSettings className={'text-xl'} />,
             text: t('menu_drop.settings')
         },

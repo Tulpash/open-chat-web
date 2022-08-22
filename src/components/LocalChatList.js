@@ -2,11 +2,13 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { observer } from 'mobx-react-lite'
 import { TailSpin } from 'react-loader-spinner'
+import { useTranslation } from 'react-i18next'
 
 import api from '../serviecs/api.service'
 import chat from '../stores/Chat.store'
 
 const ChatList = (props) => {
+    const { t } = useTranslation()
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(false)
     
@@ -34,7 +36,7 @@ const ChatList = (props) => {
             {
                 !isLoading && (data.length <= 0) &&
                 <div className={'p-10 w-full text-gray-700 flex justify-center items-center'}>
-                    Ничего не найдено
+                    {t('messages.empty_chat_list')}
                 </div>
             }
             {

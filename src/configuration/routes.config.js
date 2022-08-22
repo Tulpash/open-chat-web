@@ -8,6 +8,7 @@ import ChatPage from '../pages/Chat.page'
 import CreateChatPage from '../pages/CreateChat.page'
 import ProfilePage from '../pages/Profile.page'
 import ChatInfoPage from '../pages/ChatInfo.page'
+import SettingsPage from '../page/Setting.page'
 
 const RoutesConfig = () => {
     return(
@@ -20,6 +21,7 @@ const RoutesConfig = () => {
                     <Route path={'info'} element={<ProtectedPage><PublicLayout><ChatInfoPage /></PublicLayout></ProtectedPage>} />
                 </Route>
                 <Route path={'/profile'} element={<ProtectedPage><PublicLayout><ProfilePage /></PublicLayout></ProtectedPage>} />
+                <Route path={'/settings'} element={<ProtectedPage><PublicLayout><SettingsPage /></PublicLayout></ProtectedPage>} />
             </Routes>
         </BrowserRouter>
     )

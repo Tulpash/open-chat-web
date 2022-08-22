@@ -8,7 +8,7 @@ import user from '../stores/User.store'
 
 const ChatView = observer(() => {
     return(
-        <div className={'overflow-y-scroll flex flex-col gap-2 max-h-[calc(100%-120px)] hide-scroll'}>
+        <div className={'overflow-y-scroll flex flex-col gap-2 max-h-[calc(100%-40px)] min-h-[calc(100%-40px)] justify-end hide-scroll'}>
             {
                 chat.info &&
                 chat.info.messages.slice().map((item) => 
