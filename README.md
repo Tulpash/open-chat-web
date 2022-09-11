@@ -1,4 +1,4 @@
-# Open
+# open-chat-web
 
 EN:
 Interface written in ReactJS (JavaScript) for OpenChat-API.
